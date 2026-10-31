@@ -1,0 +1,12 @@
+CompileFlags:
+    Add: [-Wall, -Wextra, Wpedantic]
+
+Diagnostics:
+    ClangTidy:
+        Add: modernize-*, performance-*, readability-*
+
+Index:
+    Background: Build
+
+CompileCommands:
+    Path: build

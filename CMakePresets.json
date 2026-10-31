@@ -1,0 +1,287 @@
+{
+  "version": 10,
+  "cmakeMinimumRequired": {
+    "major": 4,
+    "minor": 1,
+    "patch": 2
+  },
+  "configurePresets": [
+    {
+      "name": "base",
+      "displayName": "Base",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+        "CMAKE_POSITION_INDEPENDENT_CODE": "ON",
+        "CMAKE_RUNTIME_OUTPUT_DIRECTORY": "${sourceDir}/build/${presetName}/bin",
+        "CMAKE_LIBRARY_OUTPUT_DIRECTORY": "${sourceDir}/build/${presetName}/bin",
+        "CMAKE_ARCHIVE_OUTPUT_DIRECTORY": "${sourceDir}/build/${presetName}/bin-int"
+      }
+    },
+    {
+      "name": "windows-msvc",
+      "inherits": "base",
+      "displayName": "Windows (MSVC)",
+      "cacheVariables": {
+        "CMAKE_CXX_COMPILER": "cl"
+      }
+    },
+    {
+      "name": "windows-clang",
+      "inherits": "base",
+      "displayName": "Windows (clang-cl)",
+      "cacheVariables": {
+        "CMAKE_CXX_COMPILER": "clang-cl"
+      }
+    },
+    {
+      "name": "linux-gcc",
+      "inherits": "base",
+      "displayName": "Linux (GCC)"
+    },
+    {
+      "name": "linux-clang",
+      "inherits": "base",
+      "displayName": "Linux (Clang)",
+      "cacheVariables": {
+        "CMAKE_CXX_COMPILER": "clang++"
+      }
+    },
+    {
+      "name": "macos",
+      "inherits": "base",
+      "displayName": "macOS (Clang)"
+    },
+    {
+      "name": "debug",
+      "inherits": "base",
+      "displayName": "Debug",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "LOG_LEVEL": "DEBUG",
+        "ENABLE_DEVTOOLS": "ON",
+        "ENABLE_ASSERTIONS": "ON"
+      }
+    },
+    {
+      "name": "release",
+      "inherits": "base",
+      "displayName": "Release",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "LOG_LEVEL": "ERROR",
+        "ENABLE_DEVTOOLS": "OFF",
+        "ENABLE_ASSERTIONS": "OFF"
+      }
+    },
+    {
+      "name": "relwithdebinfo",
+      "inherits": "base",
+      "displayName": "RelWithDebInfo",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "RelWithDebInfo",
+        "LOG_LEVEL": "WARNING",
+        "ENABLE_DEVTOOLS": "OFF",
+        "ENABLE_ASSERTIONS": "ON"
+      }
+    },
+    {
+      "name": "windows-msvc-debug",
+      "inherits": [
+        "windows-msvc",
+        "debug"
+      ]
+    },
+    {
+      "name": "windows-msvc-release",
+      "inherits": [
+        "windows-msvc",
+        "release"
+      ]
+    },
+    {
+      "name": "windows-msvc-relwithdebinfo",
+      "inherits": [
+        "windows-msvc",
+        "relwithdebinfo"
+      ]
+    },
+    {
+      "name": "windows-clang-debug",
+      "inherits": [
+        "windows-clang",
+        "debug"
+      ]
+    },
+    {
+      "name": "windows-clang-release",
+      "inherits": [
+        "windows-clang",
+        "release"
+      ]
+    },
+    {
+      "name": "windows-clang-relwithdebinfo",
+      "inherits": [
+        "windows-clang",
+        "relwithdebinfo"
+      ]
+    },
+    {
+      "name": "linux-gcc-debug",
+      "inherits": [
+        "linux-gcc",
+        "debug"
+      ]
+    },
+    {
+      "name": "linux-gcc-release",
+      "inherits": [
+        "linux-gcc",
+        "release"
+      ]
+    },
+    {
+      "name": "linux-gcc-relwithdebinfo",
+      "inherits": [
+        "linux-gcc",
+        "relwithdebinfo"
+      ]
+    },
+    {
+      "name": "linux-clang-debug",
+      "inherits": [
+        "linux-clang",
+        "debug"
+      ]
+    },
+    {
+      "name": "linux-clang-release",
+      "inherits": [
+        "linux-clang",
+        "release"
+      ]
+    },
+    {
+      "name": "linux-clang-relwithdebinfo",
+      "inherits": [
+        "linux-clang",
+        "relwithdebinfo"
+      ]
+    },
+    {
+      "name": "macos-debug",
+      "inherits": [
+        "macos",
+        "debug"
+      ]
+    },
+    {
+      "name": "macos-release",
+      "inherits": [
+        "macos",
+        "release"
+      ]
+    },
+    {
+      "name": "macos-relwithdebinfo",
+      "inherits": [
+        "macos",
+        "relwithdebinfo"
+      ]
+    },
+    {
+      "name": "linux-clang-asan",
+      "inherits": [
+        "linux-clang",
+        "debug"
+      ],
+      "displayName": "Linux Clang ASan",
+      "cacheVariables": {
+        "ENABLE_SANITIZERS": "address"
+      }
+    },
+    {
+      "name": "linux-clang-ubsan",
+      "inherits": [
+        "linux-clang",
+        "debug"
+      ],
+      "displayName": "Linux Clang UBSan",
+      "cacheVariables": {
+        "ENABLE_SANITIZERS": "undefined"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "windows-msvc-debug",
+      "configurePreset": "windows-msvc-debug"
+    },
+    {
+      "name": "windows-msvc-release",
+      "configurePreset": "windows-msvc-release"
+    },
+    {
+      "name": "windows-msvc-relwithdebinfo",
+      "configurePreset": "windows-msvc-relwithdebinfo"
+    },
+    {
+      "name": "windows-clang-debug",
+      "configurePreset": "windows-clang-debug"
+    },
+    {
+      "name": "windows-clang-release",
+      "configurePreset": "windows-clang-release"
+    },
+    {
+      "name": "windows-clang-relwithdebinfo",
+      "configurePreset": "windows-clang-relwithdebinfo"
+    },
+    {
+      "name": "linux-gcc-debug",
+      "configurePreset": "linux-gcc-debug"
+    },
+    {
+      "name": "linux-gcc-release",
+      "configurePreset": "linux-gcc-release"
+    },
+    {
+      "name": "linux-gcc-relwithdebinfo",
+      "configurePreset": "linux-gcc-relwithdebinfo"
+    },
+    {
+      "name": "linux-clang-debug",
+      "configurePreset": "linux-clang-debug"
+    },
+    {
+      "name": "linux-clang-release",
+      "configurePreset": "linux-clang-release"
+    },
+    {
+      "name": "linux-clang-relwithdebinfo",
+      "configurePreset": "linux-clang-relwithdebinfo"
+    },
+    {
+      "name": "macos-debug",
+      "configurePreset": "macos-debug"
+    },
+    {
+      "name": "macos-release",
+      "configurePreset": "macos-release"
+    },
+    {
+      "name": "macos-relwithdebinfo",
+      "configurePreset": "macos-relwithdebinfo"
+    },
+    {
+      "name": "asan",
+      "configurePreset": "linux-clang-asan"
+    },
+    {
+      "name": "ubsan",
+      "configurePreset": "linux-clang-ubsan"
+    }
+  ]
+}
